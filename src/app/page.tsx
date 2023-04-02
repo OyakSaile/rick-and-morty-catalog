@@ -1,7 +1,6 @@
+"use client";
+import Search from "./search";
+
 export default function Home() {
-  return (
-    <main>
-      <h1>teste</h1>
-    </main>
-  );
+  return <Search />;
 }
