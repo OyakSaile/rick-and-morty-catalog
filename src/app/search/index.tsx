@@ -47,15 +47,13 @@ export default function Search() {
   const [currentPage, setCurrentPage] = useState(1);
   const [characterName, setCharacterName] = useState("");
 
-  const { isLoading, error, data } = useQuery<ApiData, Error>(
-    ["characters", currentPage, filters],
-    () =>
-      fetch(
-        `https://rickandmortyapi.com/api/character?page=${currentPage}&name=${characterName}&gender=${filters.gender}&status=${filters.status}`
-      ).then((res) => res.json()),
-    {
-      keepPreviousData: true,
-    }
+  const { isLoading, error, data, isFetching, isFetched } = useQuery<
+    ApiData,
+    Error
+  >(["characters", currentPage, filters, characterName], () =>
+    fetch(
+      `https://rickandmortyapi.com/api/character?page=${currentPage}&name=${characterName}&gender=${filters.gender}&status=${filters.status}`
+    ).then((res) => res.json())
   );
 
   if (error) return <span>An error has occurred</span>;
